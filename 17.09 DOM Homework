@@ -1,0 +1,124 @@
+________________________________________1___________________________________________________________
+// - створити блок з id, class та текстом в середені. Зчитати окремо цей текст за селекторів по 
+// id , class та тегу
+// - змінити цей текст використовуючи селектори id, class,  tag 
+// - створити функцію яка змінюватиме розміри та колір цього блоку згідно з визначиними аргументами
+
+<body>   
+
+    <div class="myClass" id="myId"> Hello! </div>
+
+  <script>
+  
+      let myId = document.getElementById('myId');
+      let myDiv = document.getElementsByTagName('div')
+      let [myClass] = document.getElementsByClassName('myClass');
+
+      myId.innerText = 'Okten';
+      myDiv[0].innerText = 'Ok';    
+      myClass.innerText = 'Hello Again';
+
+      function changeColor(color, width, height) {
+         myId.style.backgroundColor = color;
+         myId.style.width = `${width}px`;
+         myId.style.height = `${height}px`;
+      }
+      changeColor('red',100,100)
+      
+  </script>
+</body>   
+ 
+_________________________________________2___________________________________________________________________
+      - створити дві форми , по два інпути в кожній
+      - ствоирити кнопку при кліку на яку считується та виводиться на консоль інформація з цих форм
+<body>   
+
+    <form>
+        <input type="text">
+        <input type="text">
+    </form>
+    <form>
+        <input type="text">
+        <input type="text">
+    </form>
+    <button id="btn">Take values</button>
+    
+   <script>
+         
+        let btn = document.getElementById('btn');
+        let input = document.getElementsByTagName('input');
+        btn.onclick = function () {
+            for (let i = 0; i < input.length; i++) {
+                console.log(input[i].value);
+            }
+        }
+        
+    </script>
+</body>   
+
+_________________________________________3___________________________________________________________________
+- Створити функцію, яка генерує таблицю, перший аргумент визначає кількість строк, 
+ а другий параметр визначає кліькіть ячеєк в кожній строці.
+ третій параметр визначає елемент в який потрібно таблицю додати
+ 
+      function createTable (x,y, place) {
+        let table = document.createElement('table');
+
+        for (let i = 1; i < x; i++) {
+           let tableX = document.createElement('tr');
+           tableX.innerHTML = `New Row - ${i} |`;
+
+           for (let j = 1; j < y; j++) {
+               let tableY = document.createElement('td');
+               tableY.innerText = `${j}`;
+               tableX.appendChild(tableY)
+           }
+
+            table.appendChild(tableX)
+         }
+
+         table.style.border = `1px solid black`;
+         document.body.insertBefore(table, place);
+         return table
+      }
+
+      createTable(10,15, document.getElementById('btn'))
+
+___________________________________4_______________________________________________
+- Сворити масив не цензцрних слів. Сворити інпут текстового типу. Якщо людина вводить слово і воно міститься в масиві не цензурних слів 
+кинути алерт з попередженням.
+
+<body>
+    <form>
+        <input type="text" id="input">
+
+    </form>
+    <script>
+        let input = document.getElementById('input');
+        let badwords = [ 'flower', 'heart', 'cup', 'phone', 'chair'];
+        input.oninput = function () {
+          for (let i = 0; i < badwords.length; i++) {
+              if(this.value === badwords[i]) {
+                 console.error(`${this.value} is bad word`)
+               }
+            }
+         }
+    </script>
+</body> 
+
+
+___________________________________5_________________________________________
+- Робимо попередню логіку цікавішею.
+Все те саме, але тепер потрібно перевіряти чи не містить ціле речення в собі погані слова
+
+input.oninput = function () {
+    let array = this.value.split(" ");
+    for (let i = 0; i < badwords.length; i++) {
+          for (let a = 0; a < array.length; a++) {
+               if(array[a] == badwords[i]) {
+                   console.error(`${badwords[i]} is bad word`)
+               }
+          }
+     }   
+ }
+
