@@ -1,0 +1,24 @@
+- Дан textarea. В него вводится текст.Сделайте так, чтобы после захода на эту страницу через некоторое время, 
+введенный текст остался в textarea. 
+
+<body>
+
+<form name="form">
+    <input type="text" name="name">
+</form>
+
+    <script>
+        let form = document.forms.form;
+        let name = form.name;
+        
+        name.addEventListener('input', event => {
+            event.preventDefault();
+            localStorage.setItem("input", name.value);
+        })
+        
+        name.value = localStorage.getItem("input");
+    </script>
+
+</body>
+
+____________________________________________________________________________________________________________________
