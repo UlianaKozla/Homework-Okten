@@ -22,3 +22,30 @@
 </body>
 
 ____________________________________________________________________________________________________________________
+
+<body>
+<form name="form">
+    <p>Name</p>
+    <input type="text" name="name" required>
+    <p>Surname</p>
+    <input type="text" name="age" required>
+</br>
+    <input type="submit" name="submit" value="CONFIRM">
+</form>
+
+    <script>
+        let form = document.forms.form;
+        let name = form.name;
+        let age = form.age;
+        let submit = form.submit;
+        
+        submit.addEventListener('click', event => {
+            event.preventDefault();
+            localStorage.setItem("name", name.value);
+            localStorage.setItem("age", age.value);
+        })
+        name.value = localStorage.getItem("name");
+        age.value = localStorage.getItem("age");
+      </script>
+
+</body>
