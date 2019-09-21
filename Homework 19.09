@@ -22,30 +22,56 @@
 </body>
 
 ____________________________________________________________________________________________________________________
-
+- Дана форма с инпутами, текстареа, чекбоксами, радио кнопочками, селектами и тп. 
+ Пользователь вводит какие-то данные и закрывает страницу (не факт, что он заполнил всю форму). 
+ Сделайте так, чтобы при следующем заходе на страницу введенные им ранее данные стояли на своих местах. 
+ Сделайте ваш скрипт как можно более универсальным.
+ 
 <body>
 <form name="form">
     <p>Name</p>
     <input type="text" name="name" required>
     <p>Surname</p>
     <input type="text" name="age" required>
+    <p>Male / Female</p>
+    <input type="radio" name="radio" id="radio1">
+    <input type="radio" name="radio" id="radio2">
+    <p>Work</p>
+    <input type="checkbox" name="checkbox" id="checkbox1">
+    <p>Study</p>
+    <input type="checkbox" name="checkbox" id="checkbox2">
 </br>
     <input type="submit" name="submit" value="CONFIRM">
 </form>
 
     <script>
+    
         let form = document.forms.form;
         let name = form.name;
         let age = form.age;
+        let radio1 = document.getElementById('radio1');
+        let radio2 = document.getElementById('radio2');
+        let checkbox1 = document.getElementById('checkbox1');
+        let checkbox2 = document.getElementById('checkbox2');
         let submit = form.submit;
         
         submit.addEventListener('click', event => {
             event.preventDefault();
             localStorage.setItem("name", name.value);
             localStorage.setItem("age", age.value);
+            localStorage.setItem("radio1", JSON.stringify(radio1.checked));
+            localStorage.setItem("radio2", JSON.stringify(radio2.checked));
+            localStorage.setItem("checkbox1", JSON.stringify(checkbox1.checked));
+            localStorage.setItem("checkbox2", JSON.stringify(checkbox2.checked));
         })
+        
         name.value = localStorage.getItem("name");
         age.value = localStorage.getItem("age");
+        radio1.checked = JSON.parse(localStorage.getItem("radio1"));
+        radio2.checked = JSON.parse(localStorage.getItem("radio2"));
+        checkbox1.checked = JSON.parse(localStorage.getItem("checkbox1"));
+        checkbox2.checked = JSON.parse(localStorage.getItem("checkbox2"));
+        
       </script>
 
 </body>
