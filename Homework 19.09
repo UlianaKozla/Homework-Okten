@@ -47,13 +47,8 @@ ________________________________________________________________________________
     <script>
     
         let form = document.forms.form;
-        let name = form.name;
-        let age = form.age;
-        let radio1 = document.getElementById('radio1');
-        let radio2 = document.getElementById('radio2');
-        let checkbox1 = document.getElementById('checkbox1');
-        let checkbox2 = document.getElementById('checkbox2');
-        let submit = form.submit;
+        let [name, age, radio1, radio2, checkbox1, checkbox2, submit] = form;
+
         
         submit.addEventListener('click', event => {
             event.preventDefault();
