@@ -1,0 +1,30 @@
+Створила TO DO LIST в якому можна додавати справи що потрібно зробити і заберати при кліку на справу її із списку
+
+<body>
+    
+    <div style="display: block; margin: 20px" id="newtask">
+      <h1> TO DO LIST</h1>
+      <ul id="tasks"> </ul>
+    </div>
+    
+    <input type="text" id="text">
+    <button id="submit">SUBMIT</button>
+  
+    <script>  
+    
+       let text = document.getElementById('text');
+       let button = document.getElementById('submit');
+       
+       button.onclick = ()=> {
+           const li = document.createElement('li');
+           li.innerHTML = text.value;
+           newtask.append(li);
+           text.value = '';
+            li.onclick = ()=> {
+                li.style.display = 'none';
+            }
+       }
+       
+    </script>
+
+</body>
