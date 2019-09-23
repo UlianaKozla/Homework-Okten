@@ -1,15 +1,14 @@
-Створила TO DO LIST в якому можна додавати список справ і заберати при кліку на справу її із списку
+Створила TO DO LIST в якому можна додавати список справ і забирати при кліку із списку
 
 <body>
-    
-    <div style="display: block; margin: 20px" id="newtask">
-    <h1> <em>TO DO LIST</em> </h1>
-    </div>
-    
-    <input type="text" id="text">
-    <button id="submit">SUBMIT</button>
 
-    <ul id="alltasks"> </ul>
+    <div id="main">
+        <h1 style="display: block; margin: 20px" id="newtask"> <em>TO DO LIST</em> </h1>
+        <input type="text" id="text">
+        <button id="submit">SUBMIT</button>
+        <ul id="alltasks"> </ul>
+    </div>
+
     <script>
        let text = document.getElementById('text');
        let button = document.getElementById('submit');
@@ -17,8 +16,7 @@
        let alltasks = document.getElementById('alltasks');
        let i = 0;
 
-    button.onclick = event => {
-        event.preventDefault()
+    button.onclick = () => {
         const li = document.createElement('li');
         li.innerHTML = text.value;
         li.style.color = `darkgreen`;
@@ -34,17 +32,24 @@
         }
     };
 
-    for (index = 1; index <= localStorage.length; index++) {
+    for (k = 1; k <= localStorage.length; k++) {
         let li = document.createElement('li');
-        li.innerHTML = JSON.parse(localStorage.getItem(`${index}`))
+        li.innerHTML = JSON.parse(localStorage.getItem(`${k}`))
         alltasks.after(li);
+        li.style.cursor = `pointer`;
         i++
         li.onclick = ()=> {
+            li.style.display = 'none';
+        }
+    }
+       let clear = document.createElement('button');
+       clear.innerHTML = 'CLEAR LIST';
+       document.body.appendChild(clear);
+       clear.onclick = ()=> {
+           localStorage.clear();
            li.style.display = 'none';
        }
-    }
-    
-    
+
     </script>
 
 </body>
