@@ -3,29 +3,48 @@
 <body>
     
     <div style="display: block; margin: 20px" id="newtask">
-      <h1> TO DO LIST</h1>
-      <ul id="tasks"> </ul>
+    <h1> <em>TO DO LIST</em> </h1>
     </div>
     
     <input type="text" id="text">
     <button id="submit">SUBMIT</button>
-  
-    <script>  
-    
+
+    <ul id="alltasks"> </ul>
+    <script>
        let text = document.getElementById('text');
        let button = document.getElementById('submit');
-       let newtask = document.getElementById('newtask')
-       
-       button.onclick = ()=> {
-           const li = document.createElement('li');
-           li.innerHTML = text.value;
-           newtask.append(li);
-           text.value = '';
-            li.onclick = ()=> {
-                li.style.display = 'none';
-            }
+       let newtask = document.getElementById('newtask');
+       let alltasks = document.getElementById('alltasks');
+       let i = 0;
+
+    button.onclick = event => {
+        event.preventDefault()
+        const li = document.createElement('li');
+        li.innerHTML = text.value;
+        li.style.color = `darkgreen`;
+        li.style.cursor = `pointer`;
+
+        i++;
+        localStorage.setItem(`${i}`, JSON.stringify(li.innerHTML));
+        newtask.append(li);
+        text.value = '';
+
+        li.onclick = ()=> {
+            li.style.display = 'none';
+        }
+    };
+
+    for (k = 1; k <= localStorage.length; k++) {
+        let li = document.createElement('li');
+        li.innerHTML = JSON.parse(localStorage.getItem(`${k}`))
+        alltasks.after(li);
+        i++
+        li.onclick = ()=> {
+           li.style.display = 'none';
        }
-       
+    }
+    
+    
     </script>
 
 </body>
