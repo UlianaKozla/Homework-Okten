@@ -1,4 +1,4 @@
-Створила TO DO LIST в якому можна додавати справи що потрібно зробити і заберати при кліку на справу її із списку
+Створила TO DO LIST в якому можна додавати список справ і заберати при кліку на справу її із списку
 
 <body>
     
@@ -34,9 +34,9 @@
         }
     };
 
-    for (k = 1; k <= localStorage.length; k++) {
+    for (index = 1; index <= localStorage.length; index++) {
         let li = document.createElement('li');
-        li.innerHTML = JSON.parse(localStorage.getItem(`${k}`))
+        li.innerHTML = JSON.parse(localStorage.getItem(`${index}`))
         alltasks.after(li);
         i++
         li.onclick = ()=> {
