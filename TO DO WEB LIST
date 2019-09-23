@@ -2,12 +2,13 @@
 
 <body>
 
-    <div id="main">
-        <h1 style="display: block; margin: 20px" id="newtask"> <em>TO DO LIST</em> </h1>
-        <input type="text" id="text">
-        <button id="submit">SUBMIT</button>
-        <ul id="alltasks"> </ul>
+    <div id="newtask">
+        <h1 style="display: block; margin: 20px"> <em>TO DO LIST</em> </h1>
     </div>
+
+    <input type="text" id="text">
+    <button id="submit">SUBMIT</button>
+    <ul id="alltasks"> </ul>
 
     <script>
        let text = document.getElementById('text');
@@ -19,9 +20,7 @@
     button.onclick = () => {
         const li = document.createElement('li');
         li.innerHTML = text.value;
-        li.style.color = `darkgreen`;
-        li.style.cursor = `pointer`;
-
+        li.classList.add('lishka');
         i++;
         localStorage.setItem(`${i}`, JSON.stringify(li.innerHTML));
         newtask.append(li);
@@ -36,7 +35,7 @@
         let li = document.createElement('li');
         li.innerHTML = JSON.parse(localStorage.getItem(`${k}`))
         alltasks.after(li);
-        li.style.cursor = `pointer`;
+        li.classList.add('lishka');
         i++
         li.onclick = ()=> {
             li.style.display = 'none';
@@ -47,9 +46,15 @@
        document.body.appendChild(clear);
        clear.onclick = ()=> {
            localStorage.clear();
-           li.style.display = 'none';
        }
 
     </script>
-
+    <style>
+        .lishka {
+            cursor: pointer;
+            font-size: 20px;
+            color: darkgreen;
+            font-style: italic;
+        }
+    </style>
 </body>
