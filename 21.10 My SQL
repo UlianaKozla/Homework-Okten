@@ -1,0 +1,39 @@
+# 1. +Вибрати усіх клієнтів, чиє ім'я має менше ніж 6 символів.
+# SELECT * FROM bank.client where  CHAR_LENGTH(FirstName) < 5;
+
+# 2. +Вибрати львівські відділення банку.
+# SELECT * FROM bank.client WHERE City = 'Lviv';
+
+# 3. +Вибрати клієнтів з вищою освітою та посортувати по прізвищу.
+# SELECT* FROM bank.client WHERE Education = 'high' ORDER BY FirstName;
+
+# 4. +Виконати сортування у зворотньому порядку над таблицею Заявка і вивести 5 останніх елементів.
+# SELECT * FROM bank.application ORDER BY idApplication DESC LIMIT 5
+
+# 5. +Вивести усіх клієнтів, чиє прізвище закінчується на OV чи OVA.
+# SELECT * FROM bank.client where FirstName like '%a' OR FirstName  like '%o';
+#
+# 6. +Вивести клієнтів банку, які обслуговуються київськими відділеннями.
+# SELECT * FROM bank.client WHERE City = 'Kyiv';
+#
+# 7. +Вивести імена клієнтів та їхні номера телефону, погрупувавши їх за іменами.
+# SELECT FirstName, Passport FROM bank.client ORDER BY
+
+# 8. +Вивести дані про клієнтів, які мають кредит більше ніж на 5000 тисяч гривень.
+# SELECT * FROM bank.application where Sum > 5000;
+
+# 9. +Порахувати кількість клієнтів усіх відділень та лише львівських відділень.
+# SELECT count(idClient) FROM bank.client;
+# SELECT count(idClient) FROM bank.client WHERE City = 'Lviv';
+#
+# 10. Знайти кредити, які мають найбільшу суму для кожного клієнта окремо.
+# SELECT Client_idClient, MAX(bank.application.Sum)
+# FROM  bank.application
+# GROUP BY Client_idClient
+
+# 12. Визначити найбільший та найменший кредити.
+# SELECT MAX(Sum) FROM application;
+# SELECT MIN(Sum) FROM application;
+
+# 13. Порахувати кількість кредитів для клієнтів,які мають вищу освіту.
+# SELECT COUNT(idClient) FROM client WHERE Education ='HIGH'
